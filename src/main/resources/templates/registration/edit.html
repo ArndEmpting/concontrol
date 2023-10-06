@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<head>
+    <title>Edit Registration</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <section id="main_content">
+        <div class="content">
+
+            <form action="#" th:action="@{/registration/update/{id}(id=${registration.id})}" th:object="${registration}" method="post">
+                <table border="1">
+                    <tr>
+                        <td><label>Name</label></td>
+                        <td><input type="text" th:field="*{name}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Vorname</label></td>
+                        <td><input type="text" th:field="*{vorname}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Alter</label></td>
+                        <td><input type="text" th:field="*{alter}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>StrasseNummerZusatz</label></td>
+                        <td><input type="text" th:field="*{strasseNummerZusatz}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>PLZ</label></td>
+                        <td><input type="text" th:field="*{plz}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Ort</label></td>
+                        <td><input type="text" th:field="*{ort}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Email</label></td>
+                        <td><input type="text" th:field="*{email}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Telefon</label></td>
+                        <td><input type="text" th:field="*{telefon}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Magira Name</label></td>
+                        <td><input type="text" th:field="*{magiraName}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Anreise</label></td>
+                        <td><input type="text" th:field="*{anreise}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Kfz Kennzeichen</label></td>
+                        <td><input type="text" th:field="*{kfzKennzeichen}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>AGB</label></td>
+                        <td><input type="checkbox" th:field="*{agb}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Datenschutzerklaerung</label></td>
+                        <td><input type="checkbox" th:field="*{datenschutzerklaerung}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Status</label></td>
+                        <td><input type="text" th:field="*{status}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Zusammen Mit</label></td>
+                        <td><input type="text" th:field="*{zusammenMit}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Besonderheiten</label></td>
+                        <td><input type="text" th:field="*{besonderheiten}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Laermempfindlich</label></td>
+                        <td><input type="checkbox" th:field="*{laermempfindlich}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Raucher</label></td>
+                        <td><input type="checkbox" th:field="*{raucher}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Schnarcher</label></td>
+                        <td><input type="checkbox" th:field="*{schnarcher}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Vegetarier</label></td>
+                        <td><input type="checkbox" th:field="*{vegetarier}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Kommentar</label></td>
+                        <td><input type="text" th:field="*{kommentar}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Bezahlt</label></td>
+                        <td><input type="number" step="0.01" th:field="*{bezahlt}" /></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Save</button></td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

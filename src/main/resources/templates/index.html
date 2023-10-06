@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<head>
+	<meta charset="utf-8">
+	<title th:utext="#{page.title.home}">Startseite</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<section id="main_content">
+			<div class="content">
+				<div th:if="${message != null}" class="alert alert-info" th:utext="${message}">message</div>
+
+				<div sec:authorize="isAuthenticated()">
+					<span th:utext="#{message.welcome}" />
+					<span sec:authentication="principal.user.firstName" />!
+					</br>
+					</br><li sec:authorize="hasRole('ROLE_ADMIN')">Admin</li>
+					</br><li sec:authorize="hasRole('ROLE_USER')">User</li>
+					</br><span sec:authentication="principal.authorities"></span>
+				<div class="text-center">
+					<button type="submit" th:utext="#{home.choice.register}" id="registerButton"
+							th:href="/registration/main.html" class="inline-block w-full px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer active:opacity-85 hover:scale-102 hover:shadow-soft-xs leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-gray-900 to-slate-800 hover:border-slate-700 hover:bg-slate-700 hover:text-white">
+						Anmelden
+					</button>
+				</div>
+				<div sec:authorize="hasAuthority('ADMIN_PRIVILEGE')" class="text-center">
+						<button id="adminButton" th:href="${@environment.getProperty('user.security.adminURI')}" th:utext="#{home.choice.admin}"
+						   class="font-bold text-slate-700">Admin Seite</button>
+				</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+</body>
+
+</html>

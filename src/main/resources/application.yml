@@ -1,0 +1,176 @@
+spring:
+  mvc:
+    log-request-details: true
+  devtools:
+    restart:
+      enabled: true
+
+  mail:
+    username: empting@gmx.de
+    password: test
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: false
+            required: false
+          auth: false
+          port: 2525
+        transport:
+          protocol: smtp
+    host: localhost
+  #  host: smtp.freesmtpservers.com
+  # security:
+    # oauth2:
+    #   enabled: true
+    #   client:
+    #     registration:
+    #       google:
+    #         client-id:
+    #         client-secret:
+    #         scope:
+    #           - email
+    #           - profile
+    #         client-name: Google
+    #         authorization-grant-type: authorization_code
+    #         client-authentication-method: post
+    #         provider: google
+    #       facebook:
+    #         client-id:
+    #         client-secret:
+    #         scope:
+    #           - email
+    #           - public_profile
+    #         client-name: Facebook
+    #         authorization-grant-type: authorization_code
+    #         client-authentication-method: post
+    #         provider: facebook
+    #       apple:
+    #         client-id:
+    #         client-secret:
+    #         scope:
+    #           - email
+    #           - name
+    #         client-name: Apple
+    #         authorization-grant-type: authorization_code
+    #         client-authentication-method: post
+    #         provider: apple
+  thymeleaf:
+    cache: false
+    template-loader-path: classpath:/templates
+    suffix: .html
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.MySQL8Dialect
+       # "[globally_quoted_identifiers]": false
+    show-sql: 'false'
+  application:
+    name: User Framework
+#  datasource:
+#    url: jdbc:h2:mem:registration_02;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    username: sa
+#    password: sa
+ #   driverClassName: org.h2.Driver
+#  h2:
+#    console:
+#      enabled: false
+  #
+  datasource:
+    password: springuser
+    url: jdbc:mysql://localhost:3306/springuser?createDatabaseIfNotExist=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: springuser
+  messages:
+    basename: messages/messages
+user:
+  registration:
+    sendVerificationEmail: true
+    googleEnabled: false
+    facebookEnabled: false
+  audit:
+    logFilePath: /opt/app/logs/user-audit.log
+    flushOnWrite: false
+    logEvents: true
+
+# Centralizing the URIs of common pages to make changing paths easier.  You can leave this section alone if you use the default page locations from this project.  These URLs do NOT have to be included in the unprotectedURIs list above as they will automatically be handled.
+  security:
+    loginActionURI: /user/login
+    forgotPasswordChangeURI: /user/forgot-password-change.html
+    registrationNewVerificationURI: /user/request-new-verification-email.html
+    loginSuccessURI: /index.html?messageKey=message.loginSuccess
+    forgotPasswordURI: /user/forgot-password.html
+    registrationPendingURI: /user/registration-pending-verification.html
+    disableCSRFdURIs: /no-csrf-test
+    registrationURI: /user/register.html
+    adminURI: /admin/admin.html
+    registrationSuccessURI: /user/registration-complete.html
+    logoutSuccessURI: /index.html?messageKey=message.logoutSuccess
+    defaultAction: deny
+    loginPageURI: /user/login.html
+    logoutActionURI: /user/logout
+    unprotectedURIs: /,/index.html,/user/register.html,/favicon.ico,/css/*,/js/*,/img/*,/user/registration,/user/resendRegistrationToken,/user/resetPassword,/user/registrationConfirm,/user/changePassword,/user/savePassword,/oauth2/authorization/*,/login
+    protectedURIs: /protected.html
+    forgotPasswordPendingURI: /user/forgot-password-pending-verification.html
+    updateUserURI: /user/update-user.html
+    failedLoginAttempts: 10
+    bcryptStrength: 12
+    testHashTime: true
+  mail:
+    fromAddress: test@test.com
+  purgetokens:
+    cron:
+      expression: 0 0 3 * * ?
+  copyrightFirstYear: 2020
+
+  roles-and-privileges:
+    "[ROLE_ADMIN]":
+      - ADMIN_PRIVILEGE
+      - INVITE_USER_PRIVILEGE
+      - READ_USER_PRIVILEGE
+      - ASSIGN_MANAGER_PRIVILEGE
+      - RESET_ANY_USER_PASSWORD_PRIVILEGE
+      - USER_MANAGEMENT_PRIVILEGE
+    "[ROLE_MANAGER]":
+      - ADD_USER_TO_TEAM_PRIVILEGE
+      - REMOVE_USER_FROM_TEAM_PRIVILEGE
+      - RESET_TEAM_PASSWORD_PRIVILEGE
+    "[ROLE_USER]":
+      - LOGIN_PRIVILEGE
+      - UPDATE_OWN_USER_PRIVILEGE
+      - RESET_OWN_PASSWORD_PRIVILEGE
+  role-hierarchy:
+    - ROLE_ADMIN > ROLE_MANAGER
+    - ROLE_MANAGER > ROLE_USER
+
+management:
+#  newrelic:
+#    metrics:
+#      export:
+#        api-key:
+#        account-id:
+hibernate:
+  globally_quoted_identifiers: 'false'
+server:
+  servlet:
+    session:
+      cookie:
+        secure: true
+        http-only: true
+      timeout: 30m
+logging:
+  file:
+    name: /opt/app/logs/user-app.log
+  level:
+    root: DEBUG
+    com:
+      zaxxer: INFO
+    org:
+      apache:
+        tomcat: INFO
+      catalina:
+        session:
+          ManagerBase: INFO

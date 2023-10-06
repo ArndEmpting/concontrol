@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<head>
+    <title>Registrations</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <section id="main_content">
+        <div class="content">
+
+            <div th:switch="${registrations}" class="container my-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 th:case="null">No registrations yet!</h2>
+
+                        <div th:case="*">
+                            <h2 class="my-5">Registrations</h2>
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Vorname</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="registration : ${registrations}">
+                                    <td th:text="${registration.name}"></td>
+                                    <td th:text="${registration.vorname}"></td>
+                                    <td th:text="${registration.email}"></td>
+                                    <td th:text="${registration.status}"></td>
+                                    <td><a th:href="@{/registration/edit/{id}(id=${registration.id})}" class="btn btn-primary">Edit</a></td>
+                                    <td><a th:href="@{/registration/delete/{id}(id=${registration.id})}" class="btn btn-primary">Delete</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="my-5"><a href="/registration/new" class="btn btn-primary">Add New</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+</body>
+
+</html>

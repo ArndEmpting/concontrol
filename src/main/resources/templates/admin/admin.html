@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<head>
+	<title th:utext="#{page.title.login}">ADMIN</title>
+	<style>
+		.table {
+			table-layout: fixed;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<section id="main_content">
+			<div class="content">
+				<div th:switch="${users}" class="container my-5">
+					<div class="row">
+						<div class="col-md-6">
+							<h2 th:case="null">No users yet!</h2>
+							<div th:case="*">
+								<h2 class="my-5">Users</h2>
+								<table class="table table-striped table-responsive-md">
+									<thead>
+									<tr>
+										<th>Vorname</th>
+										<th>Nachname</th>
+										<th>Email</th>
+										<th>Freigeschaltet</th>
+										<th>Ist Admin</th>
+										<th>Edit</th>
+										<th>Delete</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="user : ${users}">
+										<td th:text="${user.firstName}"></td>
+										<td th:text="${user.lastName}"></td>
+										<td th:text="${user.email}"></td>
+										<td th:text="${user.enabled}"></td>
+										<td th:text="${user.admin}"></td>
+										<td><a th:href="@{/admin/update-user-action/{id}(id=${user.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+										<td><a th:href="@{/admin/delete/{id}(id=${user.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+							<p class="my-5"><a href="/admin/signup" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i></a></p>
+						</div>
+					</div>
+				</div>
+	</div>
+		</section>
+
+	</div>
+</body>
+
+</html>

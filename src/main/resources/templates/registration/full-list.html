@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Details</title>
+</head>
+<body>
+<form th:object="${registration}" th:action="@{/registration/update}" method="post">
+    <table border="1">
+        <!-- For all other fields, add a row like below.
+             Update the th:field and th:value to match the column you want.
+             Beware of the field type (use appropriate input type) -->
+
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" th:value="${registration.name}"></td>
+        </tr>
+        <tr>
+            <td>Vorname:</td>
+            <td><input type="text" th:field="*{vorname}" th:value="${registration.vorname}"></td>
+        </tr>
+        <tr>
+            <td>Magira Volk:</td>
+            <td><input type="text" th:field="*{magiraVolk}" th:value="${registration.magiraVolk}"></td>
+        </tr>
+        <!-- add more rows for other fields -->
+
+        <tr>
+            <td colspan="2">
+                <button type="submit">Update Registration</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<form th:action="@{/registration/delete}" method="post">
+    <input type="hidden" th:field="*{id}" th:value="${registration.id}">
+    <input type="submit" value="Delete Registration">
+</form>
+</body>
+</html>

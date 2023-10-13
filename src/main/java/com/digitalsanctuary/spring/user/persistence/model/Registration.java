@@ -18,7 +18,7 @@ public class Registration {
 
     private String name;
     private String vorname; // first name
-    private String alter; // age category
+    private String altersklasse; // age category
     private String strasseNummerZusatz; // street, number & additional address info
     @Pattern(regexp = "\\d*", message = "PLZ must be a number.")
     private String plz; // postal code

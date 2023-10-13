@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Registrations</title>
+</head>
+
+<body>
+<table border="1">
+    <tr>
+        <th>Vorname</th>
+        <th>Name</th>
+        <th>Magira Volk</th>
+    </tr>
+    <tr th:each="registration : ${registrations}">
+        <td th:text="${registration.vorname}"></td>
+        <td th:text="${registration.name}"></td>
+        <td th:text="${registration.magiraVolk}"></td>
+    </tr>
+</table>
+</body>
+</html>

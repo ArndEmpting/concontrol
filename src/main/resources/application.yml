@@ -15,7 +15,7 @@ spring:
             enable: false
             required: false
           auth: false
-          port: 2525
+          port: 1025
         transport:
           protocol: smtp
     host: localhost
@@ -80,10 +80,10 @@ spring:
 #      enabled: false
   #
   datasource:
-    password: springuser
-    url: jdbc:mysql://localhost:3306/springuser?createDatabaseIfNotExist=true
+    password: concontrol
+    url: jdbc:mysql://localhost:3306/concontrol?createDatabaseIfNotExist=true
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: springuser
+    username: concontrol
   messages:
     basename: messages/messages
 user:
@@ -107,6 +107,8 @@ user:
     disableCSRFdURIs: /no-csrf-test
     registrationURI: /user/register.html
     adminURI: /admin/admin.html
+    mainURI: /registration/main.html
+    fullListURI: /registration/full-list.html
     registrationSuccessURI: /user/registration-complete.html
     logoutSuccessURI: /index.html?messageKey=message.logoutSuccess
     defaultAction: deny
@@ -165,6 +167,8 @@ logging:
   file:
     name: /opt/app/logs/user-app.log
   level:
+    sun:
+      rmi: INFO
     root: DEBUG
     com:
       zaxxer: INFO
@@ -174,3 +178,16 @@ logging:
       catalina:
         session:
           ManagerBase: INFO
+app:
+  initial-data:
+    altersklassen:
+      -  "bis 2"
+      -  "3-12"
+      -  "13-17"
+      -  "Erwachsener"
+    clans:
+      -  Horde der Finsternis
+      -  Korsaren von Samarak
+      -  Einhorn
+      -  Drachenclan von Ranabar
+    reset: true
